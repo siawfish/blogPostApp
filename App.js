@@ -13,7 +13,6 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName='Blog Post'
         screenOptions={{
           headerTitleStyle:{
             fontWeight:'100',

@@ -3,29 +3,33 @@ import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native'
 
 export default class Discover extends Component {
     goToPost = ()=>{
-        const {navigation} = this.props
-        navigation.navigate('Blog Post')
+        const { item, navigation} = this.props
+        navigation.navigate('Blog Post', {
+            img: item.img,
+            caption: item.caption,
+            author: item.author,
+            avatar: item.authorImg,
+            timestamp: item.readTime
+        })
     }
     render() {
         const { item } = this.props
         return (
-            <TouchableOpacity>
-                <View style={styles.container}>
-                    <View style={styles.smallSq}></View>
-                    <View style={styles.contentContainer}>
-                        <View style={styles.imgContainer}>
-                            <Image source={item.img} style={styles.img}/>
-                        </View>
-                        <View style={styles.contentInfoContainer}>
-                            <Text style={styles.caption} numberOfLines={3}>
-                                {item.caption}
-                            </Text>
-                            <View style={styles.contentAuthorContainer}>
-                                <Image source={item.authorImg} style={styles.avatar}/>
-                                <Text style={styles.author} numberOfLines={1}>{item.author}</Text>
-                                <View style={styles.dot}></View>
-                                <Text style={styles.timestamp}>{item.readTime}</Text>
-                            </View>
+            <TouchableOpacity onPress={this.goToPost}  style={styles.container}>
+                <View style={styles.smallSq}></View>
+                <View style={styles.contentContainer}>
+                    <View style={styles.imgContainer}>
+                        <Image source={item.img} style={styles.img}/>
+                    </View>
+                    <View style={styles.contentInfoContainer}>
+                        <Text style={styles.caption} numberOfLines={3}>
+                            {item.caption}
+                        </Text>
+                        <View style={styles.contentAuthorContainer}>
+                            <Image source={item.authorImg} style={styles.avatar}/>
+                            <Text style={styles.author} numberOfLines={1}>{item.author}</Text>
+                            <View style={styles.dot}></View>
+                            <Text style={styles.timestamp}>{item.readTime}</Text>
                         </View>
                     </View>
                 </View>

@@ -1,20 +1,26 @@
 import React, { Component } from 'react'
 import { View, StyleSheet, Text, Image, ScrollView } from 'react-native'
 import { Ionicons, FontAwesome5, Feather, AntDesign } from '@expo/vector-icons'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 
 export default class Blogpost extends Component {
     
+    goBack = () => {
+        const {navigation} = this.props
+        navigation.goBack()
+    }
     render() {
-        const {item} = this.props
+        const {route, navigation} = this.props
+        
         return (
             <View style={styles.container}>
                 <View style={styles.topLeftSq}></View>
                 <View style={styles.topMenu}>
-                    <View style={styles.navigation}>
+                    <TouchableOpacity onPress={this.goBack} style={styles.navigation}>
                         <Ionicons name="ios-arrow-back" size={35} color="#574f4f" />
                         <Text style={styles.back}>Heros</Text>
-                    </View>
+                    </TouchableOpacity>
                     <View style={styles.iconsTray}>
                         <FontAwesome5 name="headphones-alt" size={30} color="#574f4f" />
                         <View style={styles.forSpace}>
@@ -25,17 +31,17 @@ export default class Blogpost extends Component {
                 </View>
 
                 <ScrollView style={styles.contentContainer} showsVerticalScrollIndicator={false}>
-                    <Image style={styles.img} source={item.img)}/>
+                    <Image style={styles.img} source={route.params.img}/>
                     <View style={styles.captionContainer}>
                         <Text style={styles.caption} numberOfLines={3} >
-                            {item.caption}
+                            {route.params.caption}
                         </Text>
                     </View>
                     <View style={styles.postInfo}>
-                        <Image style={styles.avatar} source={require('../../assets/author.jpg')}/>
-                        <Text style={styles.author}>{item.author}</Text>
+                        <Image style={styles.avatar} source={route.params.avatar}/>
+                        <Text style={styles.author}>{route.params.author}</Text>
                         <View style={styles.dot}></View>
-                        <Text style={styles.timestamp}>{item.readTime}</Text>
+                        <Text style={styles.timestamp}>{route.params.timestamp}</Text>
                     </View>
                     <View style={styles.longTextContainer}>
                         <Text style={styles.longText}>
