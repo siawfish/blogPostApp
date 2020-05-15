@@ -1,29 +1,35 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, Text, Image } from 'react-native'
+import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native'
 
 export default class Discover extends Component {
+    goToPost = ()=>{
+        const {navigation} = this.props
+        navigation.navigate('Blog Post')
+    }
     render() {
         const { item } = this.props
         return (
-            <View style={styles.container}>
-                <View style={styles.smallSq}></View>
-                <View style={styles.contentContainer}>
-                    <View style={styles.imgContainer}>
-                        <Image source={item.img} style={styles.img}/>
-                    </View>
-                    <View style={styles.contentInfoContainer}>
-                        <Text style={styles.caption} numberOfLines={3}>
-                            {item.caption}
-                        </Text>
-                        <View style={styles.contentAuthorContainer}>
-                            <Image source={item.authorImg} style={styles.avatar}/>
-                            <Text style={styles.author} numberOfLines={1}>{item.author}</Text>
-                            <View style={styles.dot}></View>
-                            <Text style={styles.timestamp}>{item.readTime}</Text>
+            <TouchableOpacity>
+                <View style={styles.container}>
+                    <View style={styles.smallSq}></View>
+                    <View style={styles.contentContainer}>
+                        <View style={styles.imgContainer}>
+                            <Image source={item.img} style={styles.img}/>
+                        </View>
+                        <View style={styles.contentInfoContainer}>
+                            <Text style={styles.caption} numberOfLines={3}>
+                                {item.caption}
+                            </Text>
+                            <View style={styles.contentAuthorContainer}>
+                                <Image source={item.authorImg} style={styles.avatar}/>
+                                <Text style={styles.author} numberOfLines={1}>{item.author}</Text>
+                                <View style={styles.dot}></View>
+                                <Text style={styles.timestamp}>{item.readTime}</Text>
+                            </View>
                         </View>
                     </View>
                 </View>
-            </View>
+            </TouchableOpacity>
         )
     }
 }
@@ -86,7 +92,6 @@ const styles = StyleSheet.create({
     caption: {
         fontSize:20,
         fontWeight: 'bold',
-
     },
 
     contentAuthorContainer: {

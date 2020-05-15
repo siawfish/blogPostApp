@@ -14,13 +14,14 @@ export default class DiscoverList extends Component {
             {img:require('../../assets/thor.jpg'), caption:'Thor is a 2011 American superhero film based on the Marvel Comics character of the same name.', readTime:'7 mins read', author:'Amma Darkoa', authorImg:require('../../assets/author.jpg')},
             {img:require('../../assets/spiderman.jpg'), caption:'Spider-Man is a fictional superhero created by writer-editor Stan Lee and writer-artist Steve Ditko.', readTime:'3 mins read', author:'Jerome Amanor', authorImg:require('../../assets/author.jpg')}
         ]
+        const {navigation} = this.props
         return (
             <View style={styles.container}>
 
                 <ScrollView style={styles.listContainer} showsVerticalScrollIndicator={false}>
                     <FlatList
                         data={blogs}
-                        renderItem={({item})=><Discover item={item}/>}
+                        renderItem={({item})=><Discover navigation={navigation} item={item}/>}
                         keyExtractor={(item, index) => index}
                     />
                 </ScrollView>
